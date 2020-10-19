@@ -243,24 +243,230 @@ $this->start_controls_section(
 }
 
 
-	protected function render() {
-			$settings = $this->get_settings_for_display();
-			echo '<div class="oembed-elementor-widget">';
-			//echo $settings['url'];
-			echo '<pre>';
-			 print_r ($settings['gallery_items']);
-			 echo '</pre>';
-			echo '</div>';
-		}
+/********* RENDER COMPONENTS ****************/
+
+
+			public function get_placeholder_image( $item ) {
+
+				$url       = '';
+				$vid_id    = '';
+				$video_url = '';
+
+				if ( 'wistia' === $item['type'] ) {
+					$video_url = $item['wistia_url'];
+				} else {
+					$video_url = $item['video_url'];
+				}
+
+				if ( 'youtube' === $item['type'] ) {
+					if ( preg_match( '/[\\?\\&]v=([^\\?\\&]+)/', $video_url, $matches ) ) {
+						$vid_id = $matches[1];
+					}
+				} elseif ( 'vimeo' === $item['type'] ) {
+					$vid_id = preg_replace( '/[^\/]+[^0-9]|(\/)/', '', rtrim( $video_url, '/' ) );
+				} elseif ( 'wistia' === $item['type'] ) {
+					$vid_id = $this->getStringBetween( $video_url, 'wvideo=', '"' );
+				}
+
+				if ( 'yes' === $item['custom_placeholder'] ) {
+					$url = $item['placeholder_image']['url'];
+				} else {
+
+					if ( 'youtube' === $item['type'] ) {
+						$url = 'https://i.ytimg.com/vi/' . $vid_id . '/' . apply_filters( 'uael_vg_youtube_image_quality', $item['yt_thumbnail_size'] ) . '.jpg';
+					} elseif ( 'vimeo' === $item['type'] ) {
+						if ( '' !== $vid_id && 0 !== $vid_id ) {
+							$vimeo = unserialize( file_get_contents( "https://vimeo.com/api/v2/video/$vid_id.php" ) );
+							$url = $vimeo[0]['thumbnail_large'];
+						}
+					} elseif ( 'wistia' === $item['type'] ) {
+						$url = 'https://embedwistia-a.akamaihd.net/deliveries/' . $this->getStringBetween( $video_url, 'deliveries/', '?' );
+					}
+				}
+
+				return array(
+					'url'      => $url,
+					'video_id' => $vid_id,
+				);
+
+			}
+
+			/**
+			 * Returns Video URL.
+			 *
+			 * @param string $url Video URL.
+			 * @param string $from From compare string.
+			 * @param string $to To compare string.
+			 * @since 1.17.0
+			 * @access protected
+			 */
+			protected function getStringBetween( $url, $from, $to ) {
+				$sub = substr( $url, strpos( $url, $from ) + strlen( $from ), strlen( $url ) );
+				$id  = substr( $sub, 0, strpos( $sub, $to ) );
+
+				return $id;
+			}
 
 
 
 
+				/**
+				 * Render Gallery Data.
+				 *
+				 * @since 1.5.0
+				 * @access public
+				 */
+				public function render_gallery_inner_data() {
+
+					$settings    = $this->get_settings_for_display();
+					$new_gallery = array();
+					$gallery     = $settings['gallery_items'];
+					$vurl        = '';
+
+
+					$new_gallery = $gallery;
+
+
+					foreach ( $new_gallery as $index => $item ) {
+
+						$url = $this->get_placeholder_image( $item );
+
+echo '<pre>';
+print_r ($url);
+echo'</pre>';
+
+						$video_url = $item['video_url'];
+
+						if ( 'wistia' === $item['type'] ) {
+							$wistia_id = $this->getStringBetween( $item['wistia_url'], 'wvideo=', '"' );
+							$video_url = 'https://fast.wistia.net/embed/iframe/' . $wistia_id . '?videoFoam=true';
+						}
+
+						$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
+
+						// Render filter / tags classes.
+						if ( 'yes' === $settings['show_filter'] && 'grid' === $settings['layout'] ) {
+
+						/*	if ( '' !== $item['tags'] ) {
+								$tags = $this->get_tag_class( $item );
+								$this->add_render_attribute( 'grid-item' . $index, 'class', array_keys( $tags ) );
+							}*/
+						}
+
+						// Render video link attributes.
+						$this->add_render_attribute(
+							'video-grid-item' . $index,
+							array(
+								'class' => 'uael-vg__play',
+							)
+						);
+
+						$this->add_render_attribute(
+							'video-container-link' . $index,
+							array(
+								'class' => 'elementor-clickable uael-vg__play_full',
+								'href'  => $video_url,
+							)
+						);
+
+						if ( 'wistia' === $item['type'] ) {
+							$this->add_render_attribute(
+								'video-container-link' . $index,
+								array(
+									'data-type'      => 'iframe',
+									'data-fitToView' => 'false',
+									'data-autoSize'  => 'false',
+								)
+							);
+						}
+
+						if ( 'inline' !== $settings['click_action'] ) {
+
+							$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'uael-video-gallery-' . $this->get_id() );
+						} else {
+
+							if ( 'youtube' === $item['type'] ) {
+								$vurl = 'https://www.youtube.com/embed/' . $url['video_id'] . '?autoplay=1&version=3&enablejsapi=1';
+							} elseif ( 'vimeo' === $item['type'] ) {
+								$vurl = 'https://player.vimeo.com/video/' . $url['video_id'] . '?autoplay=1&version=3&enablejsapi=1';
+							} elseif ( 'wistia' === $item['type'] ) {
+								$vurl = $video_url . '?&autoplay=1';
+							}
+
+							$this->add_render_attribute( 'video-container-link' . $index, 'data-url', $vurl );
+						}
+
+						?>
+						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
+
+							<div class="uael-video__gallery-iframe" style="background-image:url('<?php echo $url['url']; ?>');">
+								<a <?php echo $this->get_render_attribute_string( 'video-container-link' . $index ); ?>>
+									<div class="uael-video__content-wrap">
+										<div class="uael-video__content">
+
+											<?php $this->get_caption( $item ); ?>
+
+											<div <?php echo $this->get_render_attribute_string( 'video-grid-item' . $index ); ?>>
+												<?php
+												// $this->get_play_button();
+												  ?>
+											</div>
+
+											<?php
+											//$this->get_tag( $item );
+											 ?>
+
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="uael-vg__overlay"></div>
+							<?php do_action( 'uael_video_gallery_after_video', $item, $settings ); ?>
+						</div>
+						<?php
+					}
+
+				}
+
+				/**
+				 * Returns the Caption HTML.
+				 *
+				 * @param Array $item Current video array.
+				 * @since 1.5.0
+				 * @access public
+				 */
+				public function get_caption( $item ) {
+
+					$settings = $this->get_settings_for_display();
+
+					if ( '' === $item['title'] ) {
+						return;
+					}
+
+					if ( 'yes' !== $settings['show_caption'] ) {
+						return;
+					}
+					?>
+
+					<h4 class="uael-video__caption"><?php echo $item['title']; ?></h4>
+
+					<?php
+				}
 
 
 
 
+					protected function render() {
+							$settings = $this->get_settings_for_display();
+							echo '<div class="oembed-elementor-widget">';
+							//echo $settings['url'];
+						/*	echo '<pre>';
+							 print_r ($settings['gallery_items']);
+							 echo '</pre>';*/
+							 $this->render_gallery_inner_data();
+							echo '</div>';
 
+						}
 
 
 
