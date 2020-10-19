@@ -63,13 +63,13 @@ $this->start_controls_section(
 					'label'       => __( 'Video URL', 'uael' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
-					'dynamic'     => array(
+				/*	'dynamic'     => array(
 						'active'     => true,
 						'categories' => array(
 							TagsModule::POST_META_CATEGORY,
 							TagsModule::URL_CATEGORY,
 						),
-					),
+					),*/
 					'condition'   => array(
 						'type' => array( 'youtube', 'vimeo' ),
 					),
@@ -193,10 +193,10 @@ $this->start_controls_section(
 			),
 			'default'     => array(
 				array(
-					'type'              => 'youtube',
+					'type'              => 'vimeo',
 					'video_url'         => $youtube,
 					'title'             => __( 'First Video', 'uael' ),
-					'tags'              => 'YouTube',
+					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
 				array(
@@ -239,23 +239,33 @@ $this->start_controls_section(
 		)
 	);
 
-$this->end_controls_section();
+	$this->end_controls_section();
 }
 
 
+	protected function render() {
+			$settings = $this->get_settings_for_display();
+			echo '<div class="oembed-elementor-widget">';
+			//echo $settings['url'];
+			echo '<pre>';
+			 print_r ($settings['gallery_items']);
+			 echo '</pre>';
+			echo '</div>';
+		}
 
 
 
-		protected function render() {
-				$settings = $this->get_settings_for_display();
-				$html = wp_oembed_get( $settings['url'] );
-				echo '<div class="oembed-elementor-widget">';
-				echo ( $html ) ? $html : $settings['url'];
-				echo '</div>';
-			}
+
+
+
+
+
+
+
+
+
+
 /*
-	protected function render() {}
-
 	protected function _content_template() {}*/
 
 }
