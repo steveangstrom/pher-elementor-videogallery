@@ -78,7 +78,6 @@ $this->start_controls_section(
 					'name'            => 'youtube_link_doc',
 					'type'            => Controls_Manager::RAW_HTML,
 					/* translators: %1$s doc link */
-					'raw'             => sprintf( __( '<b>Note:</b>Add the actual URL of the video and not the share URL.</br></br><b>Valid:</b>&nbsp;https://www.youtube.com/watch?v=HJRzUQMhJMQ</br><b>Invalid:</b>&nbsp;https://youtu.be/HJRzUQMhJMQ', 'uael' ) ),
 					'content_classes' => 'uael-editor-doc',
 					'condition'       => array(
 						'type' => 'youtube',
@@ -96,33 +95,50 @@ $this->start_controls_section(
 					),
 					'separator'       => 'none',
 				),
-			/*	array(
-					'name'        => 'wistia_url',
-					'label'       => __( 'Link & Thumbnail Text', 'uael' ),
-					'description' => __( 'Go to your Wistia video, right click, "Copy Link & Thumbnail" and paste here.', 'uael' ),
-					'type'        => Controls_Manager::TEXT,
-					'label_block' => true,
-					'dynamic'     => array(
-						'active'     => true,
-						'categories' => array(
-							TagsModule::POST_META_CATEGORY,
-							TagsModule::URL_CATEGORY,
-						),
-					),
-					'condition'   => array(
-						'type' => 'wistia',
-					),
-				),*/
+
 				array(
 					'name'        => 'title',
-					'label'       => __( 'Caption', 'uael' ),
+					'label'       => __( 'Title', 'uael' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
-					'dynamic'     => array(
-						'active' => true,
-					),
+				//	'dynamic'     => array(	'active' => true,	),
 					'title'       => __( 'This title will be visible on hover.', 'uael' ),
+				),
+				array(
+					'name'        => 'client',
+					'label'       => __( 'Client', 'uael' ),
+					'type'        => Controls_Manager::TEXT,
+					'default'     => '',
+					'label_block' => true,
+				//	'dynamic'     => array(	'active' => true,	),
+					'title'       => __( 'This client text will be visible on hover.', 'uael' ),
+				),
+				array(
+					'name'        => 'production_company',
+					'label'       => __( 'Production Company', 'uael' ),
+					'type'        => Controls_Manager::TEXT,
+					'default'     => '',
+					'label_block' => true,
+				//	'dynamic'     => array(	'active' => true,		),
+					'title'       => __( 'This text will be visible on hover.', 'uael' ),
+				),
+				array(
+					'name'        => 'role',
+					'label'       => __( 'Role', 'uael' ),
+					'type'        => Controls_Manager::TEXT,
+					'default'     => '',
+					'label_block' => true,
+			//		'dynamic'     => array(	'active' => true,	),
+					'title'       => __( 'This text will be visible on hover.', 'uael' ),
+				),
+				array(
+					'name'        => 'notes',
+					'label'       => __( 'Notes', 'uael' ),
+					'type'        => Controls_Manager::TEXT,
+					'default'     => '',
+					'label_block' => true,
+					'title'       => __( 'This text will be visible on hover.', 'uael' ),
 				),
 			/*	array(
 					'name'        => 'tags',
