@@ -244,10 +244,6 @@ $this->start_controls_section(
 
 
 
-
-
-
-
 /********* RENDER COMPONENTS ****************/
 
 
@@ -313,8 +309,6 @@ $this->start_controls_section(
 			}
 
 
-
-
 				/**
 				 * Render Gallery Data.
 				 *
@@ -328,7 +322,6 @@ $this->start_controls_section(
 					$gallery     = $settings['gallery_items'];
 					$vurl        = '';
 
-
 					$new_gallery = $gallery;
 
 					foreach ( $new_gallery as $index => $item ) {
@@ -339,25 +332,19 @@ $this->start_controls_section(
 						/*	echo '<pre>';
 							print_r ($url);
 							echo'</pre>';
-*/
-/*
+
 							echo '<div class="elementor-custom-embed-play" role="button"><i class="eicon-play" aria-hidden="true"></i><span class="elementor-screen-only">';
 							echo __( 'Play Video', 'elementor' );
 							echo '</span></div>';*/
-
-
 
 							/*echo '<pre>';
 							print_r ($item);
 							echo'</pre>';
 							*/
 
-						//	$this->get_caption( $item );
-
 							$video_url = $item['video_url'];
 
 							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
-
 
 						// Render video link attributes.
 						$this->add_render_attribute(
@@ -407,7 +394,8 @@ $this->start_controls_section(
 						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
 
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
-								<a href="#">PLAY BUTTON
+								<a href="#">
+									<?php $this->render_playbutton(); ?>
 									<div class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
 											<?php $this->get_caption( $item ); ?>
@@ -436,19 +424,28 @@ $this->start_controls_section(
 				 */
 				public function get_caption( $item ) {
 				//echo'<h4>'. $item['title'].'</h4>';
-				echo '<div class=".pher_vg_captions"><h4>'. $item['title'].'</h4>';
-				//echo 'CLIENT: '.$item['client'].'<br>';
-				$this->render_credit($item['client'],'credit');
-				$this->render_credit($item['role'],'role');
-				$this->render_credit($item['production_company'],'production company');
-				$this->render_credit($item['notes'],'notes');
-				echo '</div>';
+					echo '<div class=".pher_vg_captions"><h4>'. $item['title'].'</h4>';
+					//echo 'CLIENT: '.$item['client'].'<br>';
+					$this->render_credit($item['client'],'credit');
+					$this->render_credit($item['role'],'role');
+					$this->render_credit($item['production_company'],'production company');
+					$this->render_credit($item['notes'],'notes');
+					echo '</div>';
 				}
 
 				public function render_credit($credit,$label){
 					echo $label.': '.$credit.'<br>';
 				}
 
+
+				public function render_playbutton(){
+						?>
+						<div class="elementor-custom-embed-play" role="button">
+							<i class="eicon-play" aria-hidden="true"></i>
+							<span class="elementor-screen-only"><?php echo __( 'Play Video', 'elementor' ); ?></span>
+						</div>
+					<?php
+				}
 
 					protected function render() {
 							$settings = $this->get_settings_for_display();
