@@ -243,6 +243,11 @@ $this->start_controls_section(
 }
 
 
+
+
+
+
+
 /********* RENDER COMPONENTS ****************/
 
 
@@ -334,6 +339,10 @@ $this->start_controls_section(
 echo '<pre>';
 print_r ($url);
 echo'</pre>';
+/*echo '<pre>';
+print_r ($item);
+echo'</pre>';*/
+$this->get_caption( $item );
 
 						$video_url = $item['video_url'];
 
@@ -436,7 +445,7 @@ echo'</pre>';
 				 * @access public
 				 */
 				public function get_caption( $item ) {
-
+/*
 					$settings = $this->get_settings_for_display();
 
 					if ( '' === $item['title'] ) {
@@ -445,7 +454,7 @@ echo'</pre>';
 
 					if ( 'yes' !== $settings['show_caption'] ) {
 						return;
-					}
+					}*/
 					?>
 
 					<h4 class="uael-video__caption"><?php echo $item['title']; ?></h4>
