@@ -394,10 +394,9 @@ $this->start_controls_section(
 						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
 
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
-								<a href="#">
-									<?php $this->render_playbutton(); ?>
-									<div class="pher_videogallery__content-wrap">
+								<a href="#" class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
+											<?php $this->render_playbutton(); ?>
 											<?php $this->get_caption( $item ); ?>
 											<div <?php echo $this->get_render_attribute_string( 'video-grid-item' . $index ); ?>>
 												<?php
@@ -405,7 +404,7 @@ $this->start_controls_section(
 												  ?>
 											</div>
 										</div>
-									</div>
+									
 								</a>
 							</div>
 							<div class="pher_videogallery__overlay"></div>
@@ -440,7 +439,7 @@ $this->start_controls_section(
 
 				public function render_playbutton(){
 						?>
-						<div class="elementor-custom-embed-play" role="button">
+						<div class="pher_videogallery-play" role="button">
 							<i class="eicon-play" aria-hidden="true"></i>
 							<span class="elementor-screen-only"><?php echo __( 'Play Video', 'elementor' ); ?></span>
 						</div>
