@@ -149,8 +149,15 @@ final class Elementor_VideoGallery_Extension  {
 		// Add Plugin actions
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'init_widgets' ] );
 		add_action( 'elementor/controls/controls_registered', [ $this, 'init_controls' ] );
+
+		// Register Widget Styles
+		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'widget_styles' ] );
 	}
 
+
+		public function widget_styles() {
+			wp_register_style( 'videogallerystyle', plugins_url( 'css/pher-videogallery.css', __FILE__ ) );
+		}
 	/**
 	 * Admin notice
 	 *

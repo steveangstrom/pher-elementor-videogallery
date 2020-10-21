@@ -331,36 +331,33 @@ $this->start_controls_section(
 
 					$new_gallery = $gallery;
 
-
 					foreach ( $new_gallery as $index => $item ) {
 
-						$url = $this->get_placeholder_image( $item );
+							$url = $this->get_placeholder_image( $item );
 
-echo '<pre>';
-print_r ($url);
-echo'</pre>';
-/*echo '<pre>';
-print_r ($item);
-echo'</pre>';*/
-$this->get_caption( $item );
+						 /* render teh background image - currently testing just rendering it = move to use video.php*/
+						/*	echo '<pre>';
+							print_r ($url);
+							echo'</pre>';
+*/
+/*
+							echo '<div class="elementor-custom-embed-play" role="button"><i class="eicon-play" aria-hidden="true"></i><span class="elementor-screen-only">';
+							echo __( 'Play Video', 'elementor' );
+							echo '</span></div>';*/
 
-						$video_url = $item['video_url'];
 
-						if ( 'wistia' === $item['type'] ) {
-							$wistia_id = $this->getStringBetween( $item['wistia_url'], 'wvideo=', '"' );
-							$video_url = 'https://fast.wistia.net/embed/iframe/' . $wistia_id . '?videoFoam=true';
-						}
 
-						$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
+							/*echo '<pre>';
+							print_r ($item);
+							echo'</pre>';
+							*/
 
-						// Render filter / tags classes.
-						if ( 'yes' === $settings['show_filter'] && 'grid' === $settings['layout'] ) {
+							$this->get_caption( $item );
 
-						/*	if ( '' !== $item['tags'] ) {
-								$tags = $this->get_tag_class( $item );
-								$this->add_render_attribute( 'grid-item' . $index, 'class', array_keys( $tags ) );
-							}*/
-						}
+							$video_url = $item['video_url'];
+
+							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
+
 
 						// Render video link attributes.
 						$this->add_render_attribute(
@@ -406,31 +403,24 @@ $this->get_caption( $item );
 						}
 
 						?>
+
 						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
 
-							<div class="uael-video__gallery-iframe" style="background-image:url('<?php echo $url['url']; ?>');">
-								<a <?php echo $this->get_render_attribute_string( 'video-container-link' . $index ); ?>>
+							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
+								<a href="#">	test  <img src="<?php echo $url['url']; ?>" /><br>
 									<div class="uael-video__content-wrap">
 										<div class="uael-video__content">
-
 											<?php $this->get_caption( $item ); ?>
-
 											<div <?php echo $this->get_render_attribute_string( 'video-grid-item' . $index ); ?>>
 												<?php
 												// $this->get_play_button();
 												  ?>
 											</div>
-
-											<?php
-											//$this->get_tag( $item );
-											 ?>
-
 										</div>
 									</div>
 								</a>
 							</div>
 							<div class="uael-vg__overlay"></div>
-							<?php do_action( 'uael_video_gallery_after_video', $item, $settings ); ?>
 						</div>
 						<?php
 					}
@@ -445,21 +435,8 @@ $this->get_caption( $item );
 				 * @access public
 				 */
 				public function get_caption( $item ) {
-/*
-					$settings = $this->get_settings_for_display();
+				echo'<h4>'. $item['title'].'</h4>';
 
-					if ( '' === $item['title'] ) {
-						return;
-					}
-
-					if ( 'yes' !== $settings['show_caption'] ) {
-						return;
-					}*/
-					?>
-
-					<h4 class="uael-video__caption"><?php echo $item['title']; ?></h4>
-
-					<?php
 				}
 
 
@@ -467,7 +444,7 @@ $this->get_caption( $item );
 
 					protected function render() {
 							$settings = $this->get_settings_for_display();
-							echo '<div class="oembed-elementor-widget">';
+							echo '<div class="videogallery-elementor-widget">';
 							//echo $settings['url'];
 						/*	echo '<pre>';
 							 print_r ($settings['gallery_items']);
