@@ -7,5 +7,6 @@
   text-align:center;
   min-height: 200px;
   padding:20px;
+  padding-bottom: 56.25%;/*16-9 padding bottom sets dimension of wrapper*/
 }
 .pher_videogallery-item a{color:#eee!important;}
