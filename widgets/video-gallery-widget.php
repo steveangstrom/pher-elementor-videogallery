@@ -407,7 +407,7 @@ $this->start_controls_section(
 						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
 
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
-								<a href="#">	PLAY BUTTON. TITLE, OTHER STUFF HERE
+								<a href="#">PLAY BUTTON
 									<div class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
 											<?php $this->get_caption( $item ); ?>
@@ -435,11 +435,19 @@ $this->start_controls_section(
 				 * @access public
 				 */
 				public function get_caption( $item ) {
-				echo'<h4>'. $item['title'].'</h4>';
-
+				//echo'<h4>'. $item['title'].'</h4>';
+				echo '<div class=".pher_vg_captions"><h4>'. $item['title'].'</h4>';
+				//echo 'CLIENT: '.$item['client'].'<br>';
+				$this->render_credit($item['client'],'credit');
+				$this->render_credit($item['role'],'role');
+				$this->render_credit($item['production_company'],'production company');
+				$this->render_credit($item['notes'],'notes');
+				echo '</div>';
 				}
 
-
+				public function render_credit($credit,$label){
+					echo $label.': '.$credit.'<br>';
+				}
 
 
 					protected function render() {
@@ -453,8 +461,6 @@ $this->start_controls_section(
 							echo '</div>';
 
 						}
-
-
 
 
 /*
