@@ -352,7 +352,7 @@ $this->start_controls_section(
 							echo'</pre>';
 							*/
 
-							$this->get_caption( $item );
+						//	$this->get_caption( $item );
 
 							$video_url = $item['video_url'];
 
@@ -407,7 +407,7 @@ $this->start_controls_section(
 						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
 
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
-								<a href="#">	test  <img src="<?php echo $url['url']; ?>" /><br>
+								<a href="#">	PLAY BUTTON. TITLE, OTHER STUFF HERE
 									<div class="uael-video__content-wrap">
 										<div class="uael-video__content">
 											<?php $this->get_caption( $item ); ?>
