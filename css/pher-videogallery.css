@@ -31,10 +31,12 @@
   transition: 0.3s all;
   text-align: center;
   background: rgba(3, 16, 19, 0.87);
+  mix-blend-mode: hard-hard-light;
   position: relative;
   bottom:0;
   top:0;
 }
+.pher_videogallery-item:hover{}
 .pher_videogallery-item:hover .pher_videogallery__content-wrap{
   opacity:1;
 }
@@ -53,6 +55,9 @@
     transform: translateY(-50%);
     z-index: 2;
 }
+
+
+
 .pher_videogallery__content h4{color:#FFF!important;}
 
 .pher_videogallery-item .pher_vg_captions {
