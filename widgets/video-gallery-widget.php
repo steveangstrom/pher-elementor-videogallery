@@ -16,15 +16,10 @@ use Elementor\Modules\DynamicTags\Module as TagsModule;
 
 
 class Elementor_VideoGallery_Widget extends \Elementor\Widget_Base {
-
 	public function get_name() {return 'mallyvids';}
-
 	public function get_title() {return __( 'Mally Vids', 'plugin-name' );}
-
 	public function get_icon() {return 'fa fa-film';}
-
 	public function get_categories() {	return [ 'general' ];}
-
 	protected function _register_controls() {
 
 $this->start_controls_section(
@@ -337,79 +332,83 @@ $this->start_controls_section(
 							echo __( 'Play Video', 'elementor' );
 							echo '</span></div>';*/
 
-							/*echo '<pre>';
+							/*
+							echo '<pre>';
 							print_r ($item);
 							echo'</pre>';
-							*/
+
 
 							$video_url = $item['video_url'];
 
 							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
 
 						// Render video link attributes.
-						$this->add_render_attribute(
+					/*	$this->add_render_attribute(
 							'video-grid-item' . $index,
 							array(
 								'class' => 'uael-vg__play',
 							)
-						);
+						);*/
 
-						$this->add_render_attribute(
+					/*	$this->add_render_attribute(
 							'video-container-link' . $index,
 							array(
 								'class' => 'elementor-clickable uael-vg__play_full',
 								'href'  => $video_url,
 							)
+						);*/
+
+					//	$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'uael-video-gallery-' . $this->get_id() );
+
+
+
+
+						$this->add_render_attribute(
+							'video-container-link',
+							[
+								'id' => 'custom-widget-id',
+								'class' => [ 'video-container-link','otherclass', $settings['custom_class'] ],
+								'role' => $settings['role'],
+								'aria-label' => $settings['name'],
+							]
 						);
+						/* 'ight box add atts */
 
-						if ( 'wistia' === $item['type'] ) {
-							$this->add_render_attribute(
-								'video-container-link' . $index,
-								array(
-									'data-type'      => 'iframe',
-									'data-fitToView' => 'false',
-									'data-autoSize'  => 'false',
-								)
-							);
-						}
+						$lightbox_options = [
+							'type' => 'video',
+							'videoType' => $settings['video_type'],
+							'url' => $lightbox_url,
+							'modalOptions' => [
+								'id' => 'elementor-lightbox-' . $this->get_id(),
+								'entranceAnimation' => $settings['lightbox_content_animation'],
+								'entranceAnimation_tablet' => $settings['lightbox_content_animation_tablet'],
+								'entranceAnimation_mobile' => $settings['lightbox_content_animation_mobile'],
+								'videoAspectRatio' => $settings['aspect_ratio'],
+							],
+						];
 
-						if ( 'inline' !== $settings['click_action'] ) {
-
-							$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'uael-video-gallery-' . $this->get_id() );
-						} else {
-
-							if ( 'youtube' === $item['type'] ) {
-								$vurl = 'https://www.youtube.com/embed/' . $url['video_id'] . '?autoplay=1&version=3&enablejsapi=1';
-							} elseif ( 'vimeo' === $item['type'] ) {
-								$vurl = 'https://player.vimeo.com/video/' . $url['video_id'] . '?autoplay=1&version=3&enablejsapi=1';
-							} elseif ( 'wistia' === $item['type'] ) {
-								$vurl = $video_url . '?&autoplay=1';
-							}
-
-							$this->add_render_attribute( 'video-container-link' . $index, 'data-url', $vurl );
-						}
+						$this->add_render_attribute( 'video-container-link', [
+							'data-elementor-open-lightbox' => 'yes',
+							'data-elementor-lightbox' => wp_json_encode( $lightbox_options ),
+						] );
 
 						?>
 
-						<div <?php echo $this->get_render_attribute_string( 'grid-item' . $index ); ?>>
-
+						<div <?php echo $this->get_render_attribute_string( 'video-container-link' ); ?> >
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
 								<a href="#" class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
-											<?php $this->render_playbutton(); ?>
+											<?php $this->render_playbutton(); echo ('aaaaa'.$vurl); ?>
 											<?php $this->get_caption( $item ); ?>
-											<div <?php echo $this->get_render_attribute_string( 'video-grid-item' . $index ); ?>>
-												<?php
-												// $this->get_play_button();
-												  ?>
-											</div>
 										</div>
-									
 								</a>
 							</div>
 							<div class="pher_videogallery__overlay"></div>
 						</div>
 						<?php
+
+
+
 					}
 
 				}
@@ -423,7 +422,7 @@ $this->start_controls_section(
 				 */
 				public function get_caption( $item ) {
 				//echo'<h4>'. $item['title'].'</h4>';
-					echo '<div class=".pher_vg_captions"><h4>'. $item['title'].'</h4>';
+					echo '<div class="pher_vg_captions"><h4>'. $item['title'].'</h4>';
 					//echo 'CLIENT: '.$item['client'].'<br>';
 					$this->render_credit($item['client'],'credit');
 					$this->render_credit($item['role'],'role');
@@ -448,12 +447,13 @@ $this->start_controls_section(
 
 					protected function render() {
 							$settings = $this->get_settings_for_display();
+
 							echo '<div class="videogallery-elementor-widget">';
 							//echo $settings['url'];
 						/*	echo '<pre>';
 							 print_r ($settings['gallery_items']);
 							 echo '</pre>';*/
-							 $this->render_gallery_inner_data();
+							$this->render_gallery_inner_data();
 							echo '</div>';
 
 						}
