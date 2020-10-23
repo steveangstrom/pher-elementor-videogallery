@@ -1,6 +1,12 @@
 
 .videogallery-elementor-widget{}
 
+  .elementor-fit-aspect-ratio {
+      position: relative;
+      height: 80vh;
+  }
+
+
 .pher_videogallery-item{
   /*this is the wrapper item for each video element, the thub/bg is set via the script*/
   position:relative;
@@ -61,7 +67,4 @@
 .pher_videogallery__content h4{color:#FFF!important;}
 
 .pher_videogallery-item .pher_vg_captions {
-/*
-
-*/
 }
