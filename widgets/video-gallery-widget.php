@@ -332,13 +332,23 @@ $this->start_controls_section(
 							echo __( 'Play Video', 'elementor' );
 							echo '</span></div>';*/
 
-							/*
+/*
 							echo '<pre>';
 							print_r ($item);
 							echo'</pre>';
 
-
+*/
 							$video_url = $item['video_url'];
+
+							if ( 'youtube' === $item['type'] ) {
+								if ( preg_match( '/[\\?\\&]v=([^\\?\\&]+)/', $video_url, $matches ) ) {
+									$vid_id = $matches[1];
+								}
+							} elseif ( 'vimeo' === $item['type'] ) {
+								$vid_id = preg_replace( '/[^\/]+[^0-9]|(\/)/', '', rtrim( $video_url, '/' ) );
+							}
+
+							//echo 'video ID = '.$vid_id;
 
 							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
 
@@ -373,11 +383,16 @@ $this->start_controls_section(
 							]
 						);
 						/* 'ight box add atts */
-
+					//	$embed_params = $this->get_embed_params();
+						//$embed_options = $this->get_embed_options();
+					//	$lightbox_url = Embed::get_embed_url( $video_url, $embed_params, $embed_options );
+					$lightbox_url='';
+						$vurl = 'https://player.vimeo.com/video/' .$vid_id . '?autoplay=1&version=3&enablejsapi=1';
+					//	echo ('Video encoded '.$vurl);
 						$lightbox_options = [
 							'type' => 'video',
-							'videoType' => $settings['video_type'],
-							'url' => $lightbox_url,
+							'videoType' =>$item['type'],
+							'url' => $vurl,
 							'modalOptions' => [
 								'id' => 'elementor-lightbox-' . $this->get_id(),
 								'entranceAnimation' => $settings['lightbox_content_animation'],
@@ -398,7 +413,7 @@ $this->start_controls_section(
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
 								<a href="#" class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
-											<?php $this->render_playbutton(); echo ('aaaaa'.$vurl); ?>
+											<?php $this->render_playbutton();  ?>
 											<?php $this->get_caption( $item ); ?>
 										</div>
 								</a>
@@ -431,6 +446,9 @@ $this->start_controls_section(
 					echo '</div>';
 				}
 
+
+
+/* RENDER */
 				public function render_credit($credit,$label){
 					echo $label.': '.$credit.'<br>';
 				}
