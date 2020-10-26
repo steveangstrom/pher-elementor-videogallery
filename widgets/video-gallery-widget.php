@@ -372,6 +372,7 @@ $this->start_controls_section(
 							echo'</pre>';
 
 */
+
 							$video_url = $item['video_url'];
 
 							if ( 'youtube' === $item['type'] ) {
@@ -405,8 +406,6 @@ $this->start_controls_section(
 					//	$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'uael-video-gallery-' . $this->get_id() );
 
 
-
-
 						$this->add_render_attribute(
 							'video-container-link',
 							[
@@ -423,26 +422,27 @@ $this->start_controls_section(
 
 
 						$vurl = 'https://player.vimeo.com/video/' .$vid_id . '?autoplay=1&version=3&enablejsapi=1';
-
-						echo ('Video encoded '.$vurl.' Aand the vid id is '.$vid_id.'  ');
+						$lightbox_options ='';
 						$lightbox_options = [
 							'type' => 'video',
 							'videoType' =>$item['type'],
-						'url' => $vurl ,
-							'modalOptions' => [
+							'url' => $vurl ,
+						/*	'modalOptions' => [
 								'id' => 'elementor-lightbox-' .$vid_id,
 								'videoAspectRatio' => $settings['aspect_ratio'],
-							],
+							],*/
 						];
 
-						$this->add_render_attribute( 'video-container-link', [
+	//echo ('Video encoded '.$vurl.' Aand the vid id is '.$vid_id.'  this is the JSON ...: <br>'.wp_json_encode( $lightbox_options ).'<br>');
+
+						$this->add_render_attribute( 'video-container-link video-'.$vid_id, [
 							'data-elementor-open-lightbox' => 'yes',
-							'data-elementor-lightbox' => wp_json_encode( $lightbox_options ),
+							'data-elementor-lightbox' => wp_json_encode($lightbox_options),
 						] );
 
 						?>
 
-						<div <?php echo $this->get_render_attribute_string( 'video-container-link' ); ?> >
+						<div <?php echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);?> >
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
 								<a href="#" class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
@@ -455,7 +455,7 @@ $this->start_controls_section(
 						</div>
 						<?php
 
-
+						echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);
 
 					}
 
