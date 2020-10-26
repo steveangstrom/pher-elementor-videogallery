@@ -455,7 +455,7 @@ $this->start_controls_section(
 						</div>
 						<?php
 
-						echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);
+					//	echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);
 
 					}
 
