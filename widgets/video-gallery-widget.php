@@ -58,13 +58,6 @@ $this->start_controls_section(
 					'label'       => __( 'Video URL', 'uael' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
-				/*	'dynamic'     => array(
-						'active'     => true,
-						'categories' => array(
-							TagsModule::POST_META_CATEGORY,
-							TagsModule::URL_CATEGORY,
-						),
-					),*/
 					'condition'   => array(
 						'type' => array( 'youtube', 'vimeo' ),
 					),
@@ -135,17 +128,7 @@ $this->start_controls_section(
 					'label_block' => true,
 					'title'       => __( 'This text will be visible on hover.', 'uael' ),
 				),
-			/*	array(
-					'name'        => 'tags',
-					'label'       => __( 'Categories', 'uael' ),
-					'type'        => Controls_Manager::TEXT,
-					'default'     => '',
-					'label_block' => true,
-					'dynamic'     => array(
-						'active' => true,
-					),
-					'title'       => __( 'Add comma separated categories. These categories will be shown for filteration.', 'uael' ),
-				),*/
+
 				array(
 					'name'      => 'yt_thumbnail_size',
 					'label'     => __( 'Thumbnail Size', 'uael' ),
@@ -235,6 +218,57 @@ $this->start_controls_section(
 	);
 
 	$this->end_controls_section();
+
+
+	/* Style Tab */
+	$this->start_controls_section(
+		'style_section',
+		[
+			'label' => __( 'Style', 'plugin-name' ),
+			'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+		]
+	);
+
+
+	$this->add_control(
+		'text_color',
+		[
+			'label' => __( 'Text Color', 'elementor' ),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => '#fefefe',
+			'selectors' => [
+				'{{WRAPPER}}' => 'color: {{VALUE}};',
+			],
+
+		]
+	);
+
+	$this->add_control(
+		'aspect_ratio',
+		[
+			'label' => __( 'Aspect Ratio', 'elementor' ),
+			'type' => Controls_Manager::SELECT,
+			'options' => [
+				'169' => '16:9',
+				'219' => '21:9',
+				'43' => '4:3',
+				'32' => '3:2',
+				'11' => '1:1',
+				'916' => '9:16',
+			],
+			'default' => '169',
+			'prefix_class' => 'elementor-aspect-ratio-',
+			'frontend_available' => true,
+		]
+	);
+
+
+
+	$this->end_controls_section();
+
+
+
+
 }
 
 
@@ -386,18 +420,17 @@ $this->start_controls_section(
 					//	$embed_params = $this->get_embed_params();
 						//$embed_options = $this->get_embed_options();
 					//	$lightbox_url = Embed::get_embed_url( $video_url, $embed_params, $embed_options );
-					$lightbox_url='';
+
+
 						$vurl = 'https://player.vimeo.com/video/' .$vid_id . '?autoplay=1&version=3&enablejsapi=1';
-					//	echo ('Video encoded '.$vurl);
+
+						echo ('Video encoded '.$vurl.' Aand the vid id is '.$vid_id.'  ');
 						$lightbox_options = [
 							'type' => 'video',
 							'videoType' =>$item['type'],
-							'url' => $vurl,
+						'url' => $vurl ,
 							'modalOptions' => [
-								'id' => 'elementor-lightbox-' . $this->get_id(),
-								'entranceAnimation' => $settings['lightbox_content_animation'],
-								'entranceAnimation_tablet' => $settings['lightbox_content_animation_tablet'],
-								'entranceAnimation_mobile' => $settings['lightbox_content_animation_mobile'],
+								'id' => 'elementor-lightbox-' .$vid_id,
 								'videoAspectRatio' => $settings['aspect_ratio'],
 							],
 						];
