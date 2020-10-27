@@ -507,10 +507,10 @@ $this->start_controls_section(
 				//echo'<h4>'. $item['title'].'</h4>';
 					echo '<div class="pher_vg_captions"><h4 class="pher_vg_titles">'. $item['title'].'</h4>';
 					//echo 'CLIENT: '.$item['client'].'<br>';
-					$this->render_credit($item['client'],'credit');
-					$this->render_credit($item['role'],'role');
-					$this->render_credit($item['production_company'],'production company');
-					$this->render_credit($item['notes'],'notes');
+					if(!empty($item['client'])) $this->render_credit($item['client'],'credit');
+					if(!empty($item['role'])) $this->render_credit($item['role'],'role');
+					if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'production company');
+					if(!empty($item['notes']))		$this->render_credit($item['notes'],'notes');
 					echo '</div>';
 				}
 
