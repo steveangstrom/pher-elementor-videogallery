@@ -264,6 +264,13 @@ $this->start_controls_section(
 
 		]
 	);
+	$this->add_group_control(
+				\Elementor\Group_Control_Typography::get_type(),
+				[
+					'name' => 'caption_typography',
+					'selector' => '{{WRAPPER}} .pher_vg_captions ul li',
+				]
+			);
 
 	$this->add_control(
 		'aspect_ratio',
@@ -489,11 +496,7 @@ $this->start_controls_section(
 							<div class="pher_videogallery__overlay"></div>
 						</div>
 						<?php
-
-					//	echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);
-
 					}
-
 				}
 
 				/**
@@ -504,21 +507,20 @@ $this->start_controls_section(
 				 * @access public
 				 */
 				public function get_caption( $item ) {
-				//echo'<h4>'. $item['title'].'</h4>';
-					echo '<div class="pher_vg_captions"><h4 class="pher_vg_titles">'. $item['title'].'</h4>';
-					//echo 'CLIENT: '.$item['client'].'<br>';
-					if(!empty($item['client'])) $this->render_credit($item['client'],'credit');
-					if(!empty($item['role'])) $this->render_credit($item['role'],'role');
-					if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'production company');
-					if(!empty($item['notes']))		$this->render_credit($item['notes'],'notes');
-					echo '</div>';
+
+					echo '<div class="pher_vg_captions"><h4 class="pher_vg_titles">'. $item['title'].'</h4><ul>';
+						if(!empty($item['client'])) $this->render_credit($item['client'],'Credit');
+						if(!empty($item['role'])) $this->render_credit($item['role'],'Role');
+						if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'Production company');
+						if(!empty($item['notes']))		$this->render_credit($item['notes'],'Notes');
+					echo '</ul></div>';
 				}
 
 
 
 /* RENDER */
 				public function render_credit($credit,$label){
-					echo $label.': '.$credit.'<br>';
+					echo '<li><b>'.$label.'</b>: '.$credit.'</li>';
 				}
 
 
