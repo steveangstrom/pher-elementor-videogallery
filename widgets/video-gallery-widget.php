@@ -229,6 +229,28 @@ $this->start_controls_section(
 		]
 	);
 
+	/********  EACH VIDEO TITLE TYPOGRAPHY ******/
+	$this->add_control(
+		'title_color',
+		[
+			'label' => __( 'Title Color', 'elementor' ),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'default' => '#ffffff',
+			'selectors' => [
+				'{{WRAPPER}} h4.pher_vg_titles' => 'color: {{VALUE}};',
+			],
+
+		]
+	);
+	$this->add_group_control(
+				\Elementor\Group_Control_Typography::get_type(),
+				[
+					'name' => 'title_typography',
+					'selector' => '{{WRAPPER}} h4.pher_vg_titles',
+				]
+			);
+
+	/********  EACH VIDEO CAPTION TYPOGRAPHY ******/
 
 	$this->add_control(
 		'text_color',
@@ -237,7 +259,7 @@ $this->start_controls_section(
 			'type' => \Elementor\Controls_Manager::COLOR,
 			'default' => '#fefefe',
 			'selectors' => [
-				'{{WRAPPER}}' => 'color: {{VALUE}};',
+				'{{WRAPPER}} .pher_vg_captions' => 'color: {{VALUE}};',
 			],
 
 		]
@@ -263,11 +285,24 @@ $this->start_controls_section(
 	);
 
 
+	$this->add_responsive_control(
+		'columns',
+		[
+			'label' => __( 'Columns', 'elementor' ),
+			'type' => Controls_Manager::SELECT,
+			'default' => '0',
+			'options' => [
+				'0' => 'Auto',
+				'1' => '1',
+				'2' => '2',
+				'3' => '3',
+				'4' => '4',
+			],
+			'prefix_class' => 'elementor-grid%s-',
+		]
+	);
 
 	$this->end_controls_section();
-
-
-
 
 }
 
@@ -470,7 +505,7 @@ $this->start_controls_section(
 				 */
 				public function get_caption( $item ) {
 				//echo'<h4>'. $item['title'].'</h4>';
-					echo '<div class="pher_vg_captions"><h4>'. $item['title'].'</h4>';
+					echo '<div class="pher_vg_captions"><h4 class="pher_vg_titles">'. $item['title'].'</h4>';
 					//echo 'CLIENT: '.$item['client'].'<br>';
 					$this->render_credit($item['client'],'credit');
 					$this->render_credit($item['role'],'role');
