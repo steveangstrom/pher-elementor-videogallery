@@ -16,9 +16,8 @@
   min-height: 200px;
   padding:0px;
   margin: 0px;
-
-  margin-bottom:20px;
 }
+
 .pher_videogallery-item a{
   color:#eee!important;
   display:block;
@@ -68,3 +67,14 @@
 
 .pher_videogallery-item .pher_vg_captions {
 }
+
+/* GRID LAYOUT */
+.pher-grid-wrapper{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.pher-grid-item{scale:100%; transition: all 0.5s;}/*each gridded element*/
+
+  .pher-grid-item:hover{z-index:1000;scale:120%;}

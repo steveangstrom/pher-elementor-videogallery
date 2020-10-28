@@ -484,7 +484,7 @@ $this->start_controls_section(
 
 						?>
 
-						<div <?php echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);?> >
+						<div class="pher-grid-item" <?php echo $this->get_render_attribute_string('video-container-link video-'.$vid_id);?> >
 							<div class="pher_videogallery-item" style="background-image:url('<?php echo $url['url']; ?>');">
 								<a href="#" class="pher_videogallery__content-wrap">
 										<div class="pher_videogallery__content">
@@ -536,7 +536,7 @@ $this->start_controls_section(
 					protected function render() {
 							$settings = $this->get_settings_for_display();
 
-							echo '<div class="videogallery-elementor-widget">';
+							echo '<div class="videogallery-elementor-widget pher-grid-wrapper">';
 							//echo $settings['url'];
 						/*	echo '<pre>';
 							 print_r ($settings['gallery_items']);
