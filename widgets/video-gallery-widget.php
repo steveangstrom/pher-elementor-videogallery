@@ -244,18 +244,24 @@ $this->start_controls_section(
 	);
 	$this->add_group_control(
 				\Elementor\Group_Control_Typography::get_type(),
-				[
+				['label' => __( 'Title Font', 'elementor' ),
 					'name' => 'title_typography',
 					'selector' => '{{WRAPPER}} h4.pher_vg_titles',
 				]
 			);
 
 	/********  EACH VIDEO CAPTION TYPOGRAPHY ******/
-
+	$this->add_control(
+		'separator_panel_style1',
+		[
+			'type' => Controls_Manager::DIVIDER,
+			'style' => 'thick',
+		]
+	);
 	$this->add_control(
 		'text_color',
 		[
-			'label' => __( 'Text Color', 'elementor' ),
+			'label' => __( 'Caption Color', 'elementor' ),
 			'type' => \Elementor\Controls_Manager::COLOR,
 			'default' => '#fefefe',
 			'selectors' => [
@@ -266,20 +272,20 @@ $this->start_controls_section(
 	);
 	$this->add_group_control(
 				\Elementor\Group_Control_Typography::get_type(),
-				[
+				['label' => __( 'Caption Font', 'elementor' ),
 					'name' => 'caption_typography',
 					'selector' => '{{WRAPPER}} .pher_vg_captions ul li',
 				]
 			);
 
 			$this->add_control(
-				'separator_panel_style',
+				'separator_panel_style2',
 				[
 					'type' => Controls_Manager::DIVIDER,
 					'style' => 'thick',
 				]
 			);
-			
+
 	$this->add_control(
 		'aspect_ratio',
 		[
@@ -316,8 +322,24 @@ $this->start_controls_section(
 			'prefix_class' => 'elementor-grid%s-',
 		]
 	);
-
-
+	$this->add_control(
+		'separator_panel_style3',
+		[
+			'type' => Controls_Manager::DIVIDER,
+			'style' => 'thick',
+		]
+	);
+	$this->add_control(
+				'overlay_color',
+				[
+					'label' => __( 'Overlay Color', 'elementor' ),
+					'type' => Controls_Manager::COLOR,
+					'default' => '#fefefe',
+					'selectors' => [
+						'{{WRAPPER}} .pher_videogallery__content-wrap' => 'background-color: {{VALUE}};',
+					],
+				]
+			);
 /*
 	$this->add_responsive_control(
 		'space',
