@@ -332,7 +332,7 @@ $this->start_controls_section(
 	$this->add_control(
 				'overlay_color',
 				[
-					'label' => __( 'Overlay Color', 'elementor' ),
+					'label' => __( 'Hover Overlay', 'elementor' ),
 					'type' => Controls_Manager::COLOR,
 					'default' => '#fefefe',
 					'selectors' => [

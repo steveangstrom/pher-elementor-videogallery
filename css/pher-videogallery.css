@@ -88,6 +88,13 @@
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
 }
+/*caption */
+.pher_videogallery-item .pher_videogallery__content ul,
+.pher_videogallery-item .pher_videogallery__content ul li{
+  list-style: none;
+  margin:0;
+  padding:0;
+}
 
 .pher_videogallery-item:hover  .pher_videogallery__content ul{
   opacity:0;
@@ -97,6 +104,7 @@
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
 }
+
 
 /* GRID LAYOUT */
 .pher-grid-wrapper{
