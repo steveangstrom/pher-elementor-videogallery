@@ -272,6 +272,14 @@ $this->start_controls_section(
 				]
 			);
 
+			$this->add_control(
+				'separator_panel_style',
+				[
+					'type' => Controls_Manager::DIVIDER,
+					'style' => 'thick',
+				]
+			);
+			
 	$this->add_control(
 		'aspect_ratio',
 		[
@@ -309,6 +317,42 @@ $this->start_controls_section(
 		]
 	);
 
+
+/*
+	$this->add_responsive_control(
+		'space',
+		[
+			'label' => __( 'Max Width', 'elementor' ),
+			'type' => Controls_Manager::SLIDER,
+			'default' => [
+				'unit' => '%',
+			],
+			'tablet_default' => [
+				'unit' => '%',
+			],
+			'mobile_default' => [
+				'unit' => '%',
+			],
+			'size_units' => [ '%', 'px', 'vw' ],
+			'range' => [
+				'%' => [
+					'min' => 1,
+					'max' => 100,
+				],
+				'px' => [
+					'min' => 1,
+					'max' => 1000,
+				],
+				'vw' => [
+					'min' => 1,
+					'max' => 100,
+				],
+			],
+			'selectors' => [
+				'{{WRAPPER}} .elementor-image img' => 'max-width: {{SIZE}}{{UNIT}};',
+			],
+		]
+	);*/
 	$this->end_controls_section();
 
 }
