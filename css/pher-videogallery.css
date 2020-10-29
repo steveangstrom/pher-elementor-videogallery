@@ -29,7 +29,21 @@
 .pher_videogallery-item .pher_videogallery-play{
 /*  font-size: 100px;*/
   font-size: 60px;
+  transition: 0.3s all;
 }
+.pher_videogallery-item .pher_videogallery-play:hover{
+  animation-name: pulsate;
+  animation-duration: 750ms;
+  animation-iteration-count: 3;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes pulsate {
+  0% {scale:1;}
+  50% {scale:1.125;}
+  100%{scale:1;}
+}
+
 
 .pher_videogallery-item .pher_videogallery__content-wrap{
 	display: block;
