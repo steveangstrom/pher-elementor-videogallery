@@ -319,7 +319,9 @@ $this->start_controls_section(
 				'3' => '3',
 				'4' => '4',
 			],
-			'prefix_class' => 'elementor-grid%s-',
+			'selectors' => [
+				'{{WRAPPER}} .pher-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}},1fr);',
+			],
 		]
 	);
 	$this->add_control(

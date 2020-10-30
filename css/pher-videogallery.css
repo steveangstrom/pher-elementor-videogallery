@@ -115,18 +115,6 @@
   grid-gap: 0px;
   grid-auto-rows: minmax(100px, auto);
 }
-.pher-grid-wrapper .grid1{
-  grid-template-columns: repeat(1, 1fr);
-}
-.pher-grid-wrapper .grid2{
-  grid-template-columns: repeat(2, 1fr);
-}
-.pher-grid-wrapper .grid3{
-  grid-template-columns: repeat(3, 1fr);
-}
-.pher-grid-wrapper .grid4{
-  grid-template-columns: repeat(4, 1fr);
-}
 
 
 .pher-grid-item{scale:100%; transition: all 0.5s;}/*each gridded element*/
