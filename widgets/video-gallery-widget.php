@@ -29,11 +29,6 @@ $this->start_controls_section(
 	)
 );
 
-	$vimeo = apply_filters( 'uael_video_gallery_vimeo_link', 'https://vimeo.com/274860274' );
-
-	$youtube = apply_filters( 'uael_video_gallery_youtube_link', 'https://www.youtube.com/watch?v=HJRzUQMhJMQ' );
-
-	$wistia = apply_filters( 'uael_video_gallery_wistia_link', '<p><a href="https://pratikc.wistia.com/medias/gyvkfithw2?wvideo=gyvkfithw2"><img src="https://embedwistia-a.akamaihd.net/deliveries/53eec5fa72737e60aa36731b57b607a7c0636f52.webp?image_play_button_size=2x&amp;image_crop_resized=960x540&amp;image_play_button=1&amp;image_play_button_color=54bbffe0" width="400" height="225" style="width: 400px; height: 225px;"></a></p><p><a href="https://pratikc.wistia.com/medias/gyvkfithw2?wvideo=gyvkfithw2">Video Placeholder - Brainstorm Force - pratikc</a></p>' );
 
 	$this->add_control(
 		'gallery_items',
@@ -44,18 +39,18 @@ $this->start_controls_section(
 			'fields'      => array(
 				array(
 					'name'    => 'type',
-					'label'   => __( 'Video Type', 'uael' ),
+					'label'   => __( 'Video Type', 'plugin-name' ),
 					'type'    => Controls_Manager::SELECT,
 					'default' => 'vimeo',
 					'options' => array(
-						'vimeo'   => __( 'Vimeo Video', 'uael' ),
-						'youtube' => __( 'YouTube Video', 'uael' ),
-						/*'wistia'  => __( 'Wistia Video', 'uael' ),*/
+						'vimeo'   => __( 'Vimeo Video', 'plugin-name' ),
+						'youtube' => __( 'YouTube Video', 'plugin-name' ),
+						/*'wistia'  => __( 'Wistia Video', 'plugin-name' ),*/
 					),
 				),
 				array(
 					'name'        => 'video_url',
-					'label'       => __( 'Video URL', 'uael' ),
+					'label'       => __( 'Video URL', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
 					'condition'   => array(
@@ -66,7 +61,7 @@ $this->start_controls_section(
 					'name'            => 'youtube_link_doc',
 					'type'            => Controls_Manager::RAW_HTML,
 					/* translators: %1$s doc link */
-					'content_classes' => 'uael-editor-doc',
+					'content_classes' => 'plugin-name-editor-doc',
 					'condition'       => array(
 						'type' => 'youtube',
 					),
@@ -76,8 +71,8 @@ $this->start_controls_section(
 					'name'            => 'vimeo_link_doc',
 					'type'            => Controls_Manager::RAW_HTML,
 					/* translators: %1$s doc link */
-				//	'raw'             => sprintf( __( '<b>Note:</b>Add the actual URL of the video <b>Valid:</b>&nbsp;https://vimeo.com/274860274<b>', 'uael' ) ),
-					'content_classes' => 'uael-editor-doc',
+				//	'raw'             => sprintf( __( '<b>Note:</b>Add the actual URL of the video <b>Valid:</b>&nbsp;https://vimeo.com/274860274<b>', 'plugin-name' ) ),
+					'content_classes' => 'plugin-name-editor-doc',
 					'condition'       => array(
 						'type' => 'vimeo',
 					),
@@ -86,58 +81,58 @@ $this->start_controls_section(
 
 				array(
 					'name'        => 'title',
-					'label'       => __( 'Title', 'uael' ),
+					'label'       => __( 'Title', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
 				//	'dynamic'     => array(	'active' => true,	),
-					'title'       => __( 'This title will be visible on hover.', 'uael' ),
+					'title'       => __( 'This title will be visible on hover.', 'plugin-name' ),
 				),
 				array(
 					'name'        => 'client',
-					'label'       => __( 'Client', 'uael' ),
+					'label'       => __( 'Client', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
 				//	'dynamic'     => array(	'active' => true,	),
-					'title'       => __( 'This client text will be visible on hover.', 'uael' ),
+					'title'       => __( 'This client text will be visible on hover.', 'plugin-name' ),
 				),
 				array(
 					'name'        => 'production_company',
-					'label'       => __( 'Production Company', 'uael' ),
+					'label'       => __( 'Production Company', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
 				//	'dynamic'     => array(	'active' => true,		),
-					'title'       => __( 'This text will be visible on hover.', 'uael' ),
+					'title'       => __( 'This text will be visible on hover.', 'plugin-name' ),
 				),
 				array(
 					'name'        => 'role',
-					'label'       => __( 'Role', 'uael' ),
+					'label'       => __( 'Role', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
 			//		'dynamic'     => array(	'active' => true,	),
-					'title'       => __( 'This text will be visible on hover.', 'uael' ),
+					'title'       => __( 'This text will be visible on hover.', 'plugin-name' ),
 				),
 				array(
 					'name'        => 'notes',
-					'label'       => __( 'Notes', 'uael' ),
+					'label'       => __( 'Notes', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
-					'title'       => __( 'This text will be visible on hover.', 'uael' ),
+					'title'       => __( 'This text will be visible on hover.', 'plugin-name' ),
 				),
 
 				array(
 					'name'      => 'yt_thumbnail_size',
-					'label'     => __( 'Thumbnail Size', 'uael' ),
+					'label'     => __( 'Thumbnail Size', 'plugin-name' ),
 					'type'      => Controls_Manager::SELECT,
 					'options'   => array(
-						'maxresdefault' => __( 'Maximum Resolution', 'uael' ),
-						'hqdefault'     => __( 'High Quality', 'uael' ),
-						'mqdefault'     => __( 'Medium Quality', 'uael' ),
-						'sddefault'     => __( 'Standard Quality', 'uael' ),
+						'maxresdefault' => __( 'Maximum Resolution', 'plugin-name' ),
+						'hqdefault'     => __( 'High Quality', 'plugin-name' ),
+						'mqdefault'     => __( 'Medium Quality', 'plugin-name' ),
+						'sddefault'     => __( 'Standard Quality', 'plugin-name' ),
 					),
 					'default'   => 'hqdefault',
 					'condition' => array(
@@ -146,21 +141,21 @@ $this->start_controls_section(
 				),
 				array(
 					'name'         => 'custom_placeholder',
-					'label'        => __( 'Custom Thumbnail', 'uael' ),
+					'label'        => __( 'Custom Thumbnail', 'plugin-name' ),
 					'type'         => Controls_Manager::SWITCHER,
 					'default'      => '',
-					'label_on'     => __( 'Yes', 'uael' ),
-					'label_off'    => __( 'No', 'uael' ),
+					'label_on'     => __( 'Yes', 'plugin-name' ),
+					'label_off'    => __( 'No', 'plugin-name' ),
 					'return_value' => 'yes',
 				),
 				array(
 					'name'        => 'placeholder_image',
-					'label'       => __( 'Select Image', 'uael' ),
+					'label'       => __( 'Select Image', 'plugin-name' ),
 					'type'        => Controls_Manager::MEDIA,
 					'default'     => array(
 						'url' => Utils::get_placeholder_image_src(),
 					),
-					'description' => __( 'This image will act as a placeholder image for the video.', 'uael' ),
+					'description' => __( 'This image will act as a placeholder image for the video.', 'plugin-name' ),
 					'dynamic'     => array(
 						'active' => true,
 					),
@@ -172,43 +167,50 @@ $this->start_controls_section(
 			'default'     => array(
 				array(
 					'type'              => 'vimeo',
-					'video_url'         => $youtube,
-					'title'             => __( 'First Video', 'uael' ),
+					'video_url'         => '',
+					'title'             => __( 'First Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
 				array(
 					'type'              => 'vimeo',
-					'video_url'         => $vimeo,
-					'title'             => __( 'Second Video', 'uael' ),
+					'video_url'         => '',
+					'title'             => __( 'Second Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
 				array(
 					'type'              => 'vimeo',
-					'wistia_url'        => $wistia,
-					'title'             => __( 'Third Video', 'uael' ),
+					'wistia_url'        => '',
+					'title'             => __( 'Third Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
 				array(
 					'type'              => 'vimeo',
-					'video_url'         => $youtube,
-					'title'             => __( 'Fourth Video', 'uael' ),
+					'video_url'         => '',
+					'title'             => __( 'Fourth Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
 				array(
 					'type'              => 'vimeo',
-					'video_url'         => $vimeo,
-					'title'             => __( 'Fifth Video', 'uael' ),
+					'video_url'         => '',
+					'title'             => __( 'Fifth Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
 				array(
 					'type'              => 'vimeo',
-					'wistia_url'        => $wistia,
-					'title'             => __( 'Sixth Video', 'uael' ),
+					'wistia_url'        => '',
+					'title'             => __( 'Sixth Video', 'plugin-name' ),
+					'tags'              => 'Vimeo',
+					'placeholder_image' => '',
+				),
+				array(
+					'type'              => 'vimeo',
+					'wistia_url'        => '',
+					'title'             => __( 'Seventh Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
@@ -342,41 +344,7 @@ $this->start_controls_section(
 					],
 				]
 			);
-/*
-	$this->add_responsive_control(
-		'space',
-		[
-			'label' => __( 'Max Width', 'elementor' ),
-			'type' => Controls_Manager::SLIDER,
-			'default' => [
-				'unit' => '%',
-			],
-			'tablet_default' => [
-				'unit' => '%',
-			],
-			'mobile_default' => [
-				'unit' => '%',
-			],
-			'size_units' => [ '%', 'px', 'vw' ],
-			'range' => [
-				'%' => [
-					'min' => 1,
-					'max' => 100,
-				],
-				'px' => [
-					'min' => 1,
-					'max' => 1000,
-				],
-				'vw' => [
-					'min' => 1,
-					'max' => 100,
-				],
-			],
-			'selectors' => [
-				'{{WRAPPER}} .elementor-image img' => 'max-width: {{SIZE}}{{UNIT}};',
-			],
-		]
-	);*/
+
 	$this->end_controls_section();
 
 }
@@ -413,7 +381,7 @@ $this->start_controls_section(
 				} else {
 
 					if ( 'youtube' === $item['type'] ) {
-						$url = 'https://i.ytimg.com/vi/' . $vid_id . '/' . apply_filters( 'uael_vg_youtube_image_quality', $item['yt_thumbnail_size'] ) . '.jpg';
+						$url = 'https://i.ytimg.com/vi/' . $vid_id . '/' . apply_filters( 'plugin-name_vg_youtube_image_quality', $item['yt_thumbnail_size'] ) . '.jpg';
 					} elseif ( 'vimeo' === $item['type'] ) {
 						if ( '' !== $vid_id && 0 !== $vid_id ) {
 							$vimeo = unserialize( file_get_contents( "https://vimeo.com/api/v2/video/$vid_id.php" ) );
@@ -495,25 +463,19 @@ $this->start_controls_section(
 
 							//echo 'video ID = '.$vid_id;
 
-							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'uael-video__gallery-item' );
+							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'plugin-name-video__gallery-item' );
 
 						// Render video link attributes.
 					/*	$this->add_render_attribute(
 							'video-grid-item' . $index,
 							array(
-								'class' => 'uael-vg__play',
+								'class' => 'plugin-name-vg__play',
 							)
 						);*/
 
-					/*	$this->add_render_attribute(
-							'video-container-link' . $index,
-							array(
-								'class' => 'elementor-clickable uael-vg__play_full',
-								'href'  => $video_url,
-							)
-						);*/
 
-					//	$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'uael-video-gallery-' . $this->get_id() );
+
+					//	$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'plugin-name-video-gallery-' . $this->get_id() );
 
 
 						$this->add_render_attribute(
@@ -543,7 +505,8 @@ $this->start_controls_section(
 							],*/
 						];
 
-	//echo ('Video encoded '.$vurl.' Aand the vid id is '.$vid_id.'  this is the JSON ...: <br>'.wp_json_encode( $lightbox_options ).'<br>');
+//echo ('Video encoded '.$vurl.' Aand the vid id is '.$vid_id.' <br>');
+//	echo ('this is the JSON ...:'.wp_json_encode( $lightbox_options ).'<br>');
 
 						$this->add_render_attribute( 'video-container-link video-'.$vid_id, [
 							'data-elementor-open-lightbox' => 'yes',
