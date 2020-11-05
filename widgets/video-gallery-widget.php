@@ -25,7 +25,7 @@ class Elementor_VideoGallery_Widget extends \Elementor\Widget_Base {
 $this->start_controls_section(
 	'section_gallery',
 	array(
-		'label' => __( 'Gallery', 'elementor-videogallery-extension' ),
+		'label' => __( 'Video Gallery', 'elementor-videogallery-extension' ),
 	)
 );
 

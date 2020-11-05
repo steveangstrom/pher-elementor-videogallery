@@ -13,7 +13,7 @@
   background-size: cover;
   background-position: center center;
   text-align:center;
-  min-height: 200px;
+/*  min-height: 200px;*/
   padding:0px;
   margin: 0px;
 }
@@ -45,7 +45,9 @@
 }
 
 .pher_videogallery-item .pher_videogallery__content .pher_vg_titles{
+    opacity:0;
   text-transform: uppercase;
+  margin:8px 0 3px 0;
 }
 .pher_videogallery-item .pher_videogallery__content-wrap{
 	display: block;
@@ -83,8 +85,8 @@
   from {opacity:0; scale:1.125;}
   to {opacity:1;scale:1;}
 }
-.pher_videogallery-item:hover .pher_videogallery__content .pher_vg_titles{opacity:0;}
 .pher_videogallery-item:hover .pher_videogallery__content .pher_vg_titles{
+  opacity:0;
   animation-name: fadein;
   animation-duration: 350ms;
   animation-fill-mode: forwards;
