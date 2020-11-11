@@ -307,7 +307,6 @@ $this->start_controls_section(
 		]
 	);
 
-
 	$this->add_responsive_control(
 		'columns',
 		[
@@ -320,12 +319,45 @@ $this->start_controls_section(
 				'2' => '2',
 				'3' => '3',
 				'4' => '4',
+				'5' => '5',				
+				'6' => '6',
 			],
 			'selectors' => [
 				'{{WRAPPER}} .pher-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}},1fr);',
 			],
 		]
 	);
+	$this->add_responsive_control(
+				'space_between',
+				[
+					'label' => __( 'Spacing', 'plugin-name' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 70,
+						],
+					],
+					'devices' => [ 'desktop', 'tablet', 'mobile' ],
+					'desktop_default' => [
+						'size' => 0,
+						'unit' => 'px',
+					],
+					'tablet_default' => [
+						'size' => 0,
+						'unit' => 'px',
+					],
+					'mobile_default' => [
+						'size' => 0,
+						'unit' => 'px',
+					],
+					'selectors' => [
+						'{{WRAPPER}} .pher-grid-wrapper' => '  grid-gap: {{SIZE}}{{UNIT}};',
+					],
+				]
+			);
+
+
 	$this->add_control(
 		'separator_panel_style3',
 		[
@@ -543,7 +575,7 @@ $this->start_controls_section(
 						if(!empty($item['client'])) $this->render_credit($item['client'],'Client');
 						if(!empty($item['role'])) $this->render_credit($item['role'],'Role');
 						if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'Production Co.');
-						if(!empty($item['notes']))		$this->render_credit($item['notes'],'Notes');
+						if(!empty($item['notes']))		$this->render_credit($item['notes'],'');
 					echo '</ul></div>';
 				}
 
@@ -551,7 +583,7 @@ $this->start_controls_section(
 
 /* RENDER */
 				public function render_credit($credit,$label){
-					echo '<li><b>'.$label.'</b>: '.$credit.'</li>';
+					echo '<li><b>'.$label.'</b> <span>'.$credit.'<span></li>';
 				}
 
 

@@ -45,7 +45,7 @@
 }
 
 .pher_videogallery-item .pher_videogallery__content .pher_vg_titles{
-    opacity:0;
+  opacity:0;
   text-transform: uppercase;
   margin:8px 0 3px 0;
 }
@@ -112,29 +112,38 @@
 
 
 /* GRID LAYOUT ---------------------------------------------*/
+/*
 .pher-grid-wrapper{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 0px;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+*/
+.pher-grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
 
+.pher-grid-wrapper .pher-grid-item {
+  grid-column: auto / span 2;
+}
 
-.pher-grid-item{scale:100%; transition: all 0.5s;}/*each gridded element*/
+.pher-grid-wrapper .pher-grid-item:nth-child(1),
+.pher-grid-wrapper .pher-grid-item:nth-child(2) {
+  grid-column: auto / span 3
+}
 
- .pher-grid-item:hover{
-  /*  z-index:1000;
-    scale:150%;
-    transform: translateX(-25%);*/
-  }
-  .pher-grid-item:hover{
+.pher-grid-item{
+    scale:100%;
+    transition: all 0.5s;
+}
 
-    /* this will cause grid shuffling as elements pop out of the row and are assigned abosolute. */
-  /*  z-index: 1000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);*/
-  }
+.pher-grid-item:hover{
+/*unused hover effect*/
+/*  z-index:1000;
+  scale:150%;
+  transform: translateX(-25%);*/
+}
