@@ -128,23 +128,6 @@
 }
 
 
-
-/* for the "two then three" layout, assign the class ".2then3" to .pher-grid-wrapper  */
-
-/* INCOMPLETE, NOT IMPLEMENTED YET */
-.pher-grid-wrapper.twothenthree {
-  grid-template-columns: repeat(6, 1fr)!important;
-}
-
-.pher-grid-wrapper.twothenthree .pher-grid-item {
-  grid-column: auto / span 2!important;
-}
-
-.pher-grid-wrapper.twothenthree .pher-grid-item:nth-child(1),
-.pher-grid-wrapper.twothenthree .pher-grid-item:nth-child(2) {
-  grid-column: auto / span 3!important;
-}
-
 .pher-grid-item{
     scale:100%;
     transition: all 0.5s;
@@ -156,3 +139,27 @@
   scale:150%;
   transform: translateX(-25%);*/
 }
+
+
+/* for the "two then three" layout, assign the layout class ".twothenthree" to .pher-grid-wrapper  */
+
+/* Medium devices and up get teh two then three layout  */
+/* incorporate this into elementor more elegantly */
+@media only screen and (min-width: 1000px) {
+
+  .pher-grid-wrapper.twothenthree {
+    grid-template-columns: repeat(6, 1fr)!important;
+  }
+
+  .pher-grid-wrapper.twothenthree .pher-grid-item {
+    grid-column: auto / span 2!important;
+  }
+
+  .pher-grid-wrapper.twothenthree .pher-grid-item:nth-child(1),
+  .pher-grid-wrapper.twothenthree .pher-grid-item:nth-child(2) {
+    grid-column: auto / span 3!important;
+  }
+
+}
+
+
