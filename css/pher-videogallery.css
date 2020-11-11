@@ -99,6 +99,7 @@
   margin:0;
   padding:0;
 }
+.pher_videogallery-item .pher_videogallery__content ul li{ padding:0 20px;margin-bottom: 2px;}
 
 .pher_videogallery-item:hover  .pher_videogallery__content ul{
   opacity:0;
