@@ -319,14 +319,35 @@ $this->start_controls_section(
 				'2' => '2',
 				'3' => '3',
 				'4' => '4',
-				'5' => '5',				
-				'6' => '6',
 			],
 			'selectors' => [
 				'{{WRAPPER}} .pher-grid-wrapper' => 'grid-template-columns: repeat({{VALUE}},1fr);',
 			],
 		]
 	);
+
+	/* layout tests */
+	$this->add_responsive_control(
+		'layout',
+		[
+			'label' => __( 'Fancy Layouts', 'elementor' ),
+			'type' => Controls_Manager::SELECT,
+			'default' => '0',
+			'options' => [
+				'0' => 'normal',
+				'1' => 'two then three',
+			],
+			'selectors_dictionary' => [
+		    '0' => '',
+		    '1' => 'grid-template-columns: repeat(6,1fr)',
+		],
+			'selectors' => [
+				'{{WRAPPER}} .pher-grid-wrapper' => '{{VALUE}}',
+			],
+		]
+	);
+
+
 	$this->add_responsive_control(
 				'space_between',
 				[

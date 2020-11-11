@@ -122,18 +122,18 @@
 */
 .pher-grid-wrapper {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
 
 .pher-grid-wrapper .pher-grid-item {
-  grid-column: auto / span 2;
+/*  grid-column: auto / span 2;*/
 }
 
 .pher-grid-wrapper .pher-grid-item:nth-child(1),
 .pher-grid-wrapper .pher-grid-item:nth-child(2) {
-  grid-column: auto / span 3
+/*  grid-column: auto / span 3*/
 }
 
 .pher-grid-item{
