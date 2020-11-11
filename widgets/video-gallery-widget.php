@@ -327,8 +327,10 @@ $this->start_controls_section(
 	);
 
 	/* layout tests */
+
+	/*use this to assign a class, then use the class to set the layout */
 	$this->add_responsive_control(
-		'layout',
+		'layout_class',
 		[
 			'label' => __( 'Fancy Layouts', 'elementor' ),
 			'type' => Controls_Manager::SELECT,
@@ -336,14 +338,7 @@ $this->start_controls_section(
 			'options' => [
 				'0' => 'normal',
 				'1' => 'two then three',
-			],
-			'selectors_dictionary' => [
-		    '0' => '',
-		    '1' => 'grid-template-columns: repeat(6,1fr)',
-		],
-			'selectors' => [
-				'{{WRAPPER}} .pher-grid-wrapper' => '{{VALUE}}',
-			],
+			]
 		]
 	);
 
@@ -618,9 +613,11 @@ $this->start_controls_section(
 				}
 
 					protected function render() {
-							$settings = $this->get_settings_for_display();
+						$settings = $this->get_settings_for_display();
 
-							echo '<div class="videogallery-elementor-widget pher-grid-wrapper">';
+						if ($settings['layout_class']=='1')	{$layoutclass =	'twothenthree';}
+						/*$layoutclass ='twothenthree';*/
+							echo '<div class="videogallery-elementor-widget pher-grid-wrapper '.$layoutclass.'">';
 							//echo $settings['url'];
 						/*	echo '<pre>';
 							 print_r ($settings['gallery_items']);
