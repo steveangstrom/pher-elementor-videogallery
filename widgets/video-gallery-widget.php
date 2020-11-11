@@ -540,7 +540,7 @@ $this->start_controls_section(
 				public function get_caption( $item ) {
 
 					echo '<div class="pher_vg_captions"><h4 class="pher_vg_titles">'. $item['title'].'</h4><ul>';
-						if(!empty($item['client'])) $this->render_credit($item['client'],'Credit');
+						if(!empty($item['client'])) $this->render_credit($item['client'],'Client');
 						if(!empty($item['role'])) $this->render_credit($item['role'],'Role');
 						if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'Production Co.');
 						if(!empty($item['notes']))		$this->render_credit($item['notes'],'Notes');
