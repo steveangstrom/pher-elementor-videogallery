@@ -90,7 +90,7 @@ $this->start_controls_section(
 				),
 				array(
 					'name'        => 'client',
-					'label'       => __( 'Client', 'plugin-name' ),
+					'label'       => __( 'Director', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
@@ -99,7 +99,7 @@ $this->start_controls_section(
 				),
 				array(
 					'name'        => 'production_company',
-					'label'       => __( 'Production Company', 'plugin-name' ),
+					'label'       => __( 'Production', 'plugin-name' ),
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'label_block' => true,
@@ -169,48 +169,6 @@ $this->start_controls_section(
 					'type'              => 'vimeo',
 					'video_url'         => '',
 					'title'             => __( 'First Video', 'plugin-name' ),
-					'tags'              => 'Vimeo',
-					'placeholder_image' => '',
-				),
-				array(
-					'type'              => 'vimeo',
-					'video_url'         => '',
-					'title'             => __( 'Second Video', 'plugin-name' ),
-					'tags'              => 'Vimeo',
-					'placeholder_image' => '',
-				),
-				array(
-					'type'              => 'vimeo',
-					'wistia_url'        => '',
-					'title'             => __( 'Third Video', 'plugin-name' ),
-					'tags'              => 'Vimeo',
-					'placeholder_image' => '',
-				),
-				array(
-					'type'              => 'vimeo',
-					'video_url'         => '',
-					'title'             => __( 'Fourth Video', 'plugin-name' ),
-					'tags'              => 'Vimeo',
-					'placeholder_image' => '',
-				),
-				array(
-					'type'              => 'vimeo',
-					'video_url'         => '',
-					'title'             => __( 'Fifth Video', 'plugin-name' ),
-					'tags'              => 'Vimeo',
-					'placeholder_image' => '',
-				),
-				array(
-					'type'              => 'vimeo',
-					'wistia_url'        => '',
-					'title'             => __( 'Sixth Video', 'plugin-name' ),
-					'tags'              => 'Vimeo',
-					'placeholder_image' => '',
-				),
-				array(
-					'type'              => 'vimeo',
-					'wistia_url'        => '',
-					'title'             => __( 'Seventh Video', 'plugin-name' ),
 					'tags'              => 'Vimeo',
 					'placeholder_image' => '',
 				),
@@ -483,21 +441,7 @@ $this->start_controls_section(
 
 							$url = $this->get_placeholder_image( $item );
 
-						 /* render teh background image - currently testing just rendering it = move to use video.php*/
-						/*	echo '<pre>';
-							print_r ($url);
-							echo'</pre>';
 
-							echo '<div class="elementor-custom-embed-play" role="button"><i class="eicon-play" aria-hidden="true"></i><span class="elementor-screen-only">';
-							echo __( 'Play Video', 'elementor' );
-							echo '</span></div>';*/
-
-/*
-							echo '<pre>';
-							print_r ($item);
-							echo'</pre>';
-
-*/
 
 							$video_url = $item['video_url'];
 
@@ -509,21 +453,6 @@ $this->start_controls_section(
 								$vid_id = preg_replace( '/[^\/]+[^0-9]|(\/)/', '', rtrim( $video_url, '/' ) );
 							}
 
-							//echo 'video ID = '.$vid_id;
-
-							//$this->add_render_attribute( 'grid-item' . $index, 'class', 'plugin-name-video__gallery-item' );
-
-						// Render video link attributes.
-					/*	$this->add_render_attribute(
-							'video-grid-item' . $index,
-							array(
-								'class' => 'plugin-name-vg__play',
-							)
-						);*/
-
-
-
-					//	$this->add_render_attribute( 'video-container-link' . $index, 'data-fancybox', 'plugin-name-video-gallery-' . $this->get_id() );
 
 
 						$this->add_render_attribute(
@@ -535,10 +464,6 @@ $this->start_controls_section(
 								'aria-label' => $settings['name'],
 							]
 						);
-						/* 'ight box add atts */
-					//	$embed_params = $this->get_embed_params();
-						//$embed_options = $this->get_embed_options();
-					//	$lightbox_url = Embed::get_embed_url( $video_url, $embed_params, $embed_options );
 
 
 						$vurl = 'https://player.vimeo.com/video/' .$vid_id . '?autoplay=1&version=3&enablejsapi=1';
@@ -547,14 +472,8 @@ $this->start_controls_section(
 							'type' => 'video',
 							'videoType' =>$item['type'],
 							'url' => $vurl ,
-						/*	'modalOptions' => [
-								'id' => 'elementor-lightbox-' .$vid_id,
-								'videoAspectRatio' => $settings['aspect_ratio'],
-							],*/
-						];
 
-//echo ('Video encoded '.$vurl.' Aand the vid id is '.$vid_id.' <br>');
-//	echo ('this is the JSON ...:'.wp_json_encode( $lightbox_options ).'<br>');
+						];
 
 						$this->add_render_attribute( 'video-container-link video-'.$vid_id, [
 							'data-elementor-open-lightbox' => 'yes',
@@ -588,13 +507,12 @@ $this->start_controls_section(
 				public function get_caption( $item ) {
 
 					echo '<div class="pher_vg_captions"><h4 class="pher_vg_titles">'. $item['title'].'</h4><ul>';
-						if(!empty($item['client'])) $this->render_credit($item['client'],'Client');
-						if(!empty($item['role'])) $this->render_credit($item['role'],'Role');
-						if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'Production Co.');
+						if(!empty($item['client'])) $this->render_credit($item['client'],'');
+						if(!empty($item['role'])) $this->render_credit($item['role'],'');
+						if(!empty($item['production_company']))	$this->render_credit($item['production_company'],'');
 						if(!empty($item['notes']))		$this->render_credit($item['notes'],'');
 					echo '</ul></div>';
 				}
-
 
 
 /* RENDER */
@@ -627,8 +545,5 @@ $this->start_controls_section(
 
 						}
 
-
-/*
-	protected function _content_template() {}*/
 
 }
