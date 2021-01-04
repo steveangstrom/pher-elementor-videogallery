@@ -353,6 +353,23 @@ $this->start_controls_section(
 
 	$this->end_controls_section();
 
+
+	$this->start_controls_section(
+		'extra_section',
+		[
+			'label' => __( 'Extra', 'plugin-name' ),
+			'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+		]
+	);
+	$this->add_control(
+		'mobile_autoplay',
+		[
+			'label' => __( 'Mobile Autoplay', 'elementor' ),
+			'type' => Controls_Manager::SWITCHER,
+		]
+	);
+	$this->end_controls_section();
+
 }
 
 
@@ -390,6 +407,16 @@ $this->start_controls_section(
 						$url = 'https://i.ytimg.com/vi/' . $vid_id . '/' . apply_filters( 'plugin-name_vg_youtube_image_quality', $item['yt_thumbnail_size'] ) . '.jpg';
 					} elseif ( 'vimeo' === $item['type'] ) {
 						if ( '' !== $vid_id && 0 !== $vid_id ) {
+
+/*  NEW API GET NOT COMPLETED */
+/*  VIMEO requires new auth methods for getting this many thumbs, unless we get them from local*/
+//  https://stackoverflow.com/questions/57037642/how-to-get-thumbnail-for-vimeo-video-using-new-api
+					/*
+					$videoId = '6271487';
+					$response = $client->request('/videos/'+$videoId+'/pictures', array(), 'GET');
+					print_r($response);
+					*/
+
 							$vimeo = unserialize( file_get_contents( "https://vimeo.com/api/v2/video/$vid_id.php" ) );
 							$url = $vimeo[0]['thumbnail_large'];
 						}
@@ -466,7 +493,7 @@ $this->start_controls_section(
 						);
 
 
-						$vurl = 'https://player.vimeo.com/video/' .$vid_id . '?autoplay=1&version=3&enablejsapi=1';
+						$vurl = 'https://player.vimeo.com/video/' .$vid_id . '?autoplay=1&version=3&enablejsapi=1&playsinline=1';
 						$lightbox_options ='';
 						$lightbox_options = [
 							'type' => 'video',
