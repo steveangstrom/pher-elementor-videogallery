@@ -160,7 +160,8 @@ final class Elementor_VideoGallery_Extension  {
 	}
 
 	public function pher_video_enqueue_script() {
-	    wp_enqueue_script( 'pher-video-script', plugin_dir_url( __FILE__ ) . 'js/pher-video-gallery.js' );
+	  	wp_enqueue_script( 'vimeo-script', plugin_dir_url( __FILE__ ) . 'js/player.js'); // vimeo player code- used for autoplay on mobile.
+	    wp_enqueue_script( 'pher-video-script', plugin_dir_url( __FILE__ ) . 'js/pher-video-gallery.js' , 'vimeo-script');
 	}
 
 

@@ -34,28 +34,20 @@
  observer.observe(mList, options);
 
 function doVideoFrame(videoEl){
-	console.log('checking');
+	//console.log('checking');
 	let theiframe = videoEl.querySelector('iframe');
 	console.log('is there a frame ? ' + theiframe);
-}
 
-/*var video = document.querySelector('video');
-var promise = video.play();
+	var iframe = videoEl.querySelector('iframe');
+	var player = new Vimeo.Player(iframe);
+	//player.play()
+	var promise = player.play();
 
-// promise won’t be defined in browsers that don't support promisified play()
-if (promise === undefined) {
-  console.log('Promisified video play() not supported');
-} else {
-  promise.then(function() {
-    console.log('Video playback successfully initiated, returning a promise');
-  }).catch(function(error) {
-    console.log('Error initiating video playback: ', error);
+	player.on('play', function() {
+		console.log('Played the video');
   });
+
 }
 
-video.onloadedmetadata = function() {
-  var fileName = this.currentSrc.replace(/^.*[\\/]/, '');
-  document.querySelector('#videoSrc').innerHTML = 'Playing video: ' + fileName;
-};*/
 
 }( jQuery, window.elementorFrontend ) );
