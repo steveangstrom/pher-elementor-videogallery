@@ -152,6 +152,15 @@ final class Elementor_VideoGallery_Extension  {
 
 		// Register Widget Styles
 		add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'widget_styles' ] );
+
+		// add my before_enqueue_scripts
+		// plugin load js
+		add_action( 'elementor/frontend/before_enqueue_scripts',  array( $this, 'pher_video_enqueue_script' ) );
+		//	add_action('wp_enqueue_scripts', [ $this, 'pher_video_enqueue_script', ['jquery']]);
+	}
+
+	public function pher_video_enqueue_script() {
+	    wp_enqueue_script( 'pher-video-script', plugin_dir_url( __FILE__ ) . 'js/pher-video-gallery.js' );
 	}
 
 

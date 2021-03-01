@@ -499,13 +499,14 @@ $this->start_controls_section(
 							'type' => 'video',
 							'videoType' =>$item['type'],
 							'url' => $vurl ,
-
 						];
 
 						$this->add_render_attribute( 'video-container-link video-'.$vid_id, [
 							'data-elementor-open-lightbox' => 'yes',
 							'data-elementor-lightbox' => wp_json_encode($lightbox_options),
 						] );
+
+		
 
 						?>
 
