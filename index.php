@@ -3,7 +3,7 @@
  * Plugin Name: Elementor Video Gallery
  * Description: Custom Elementor extension for Post Grid Lightbox.
  * Plugin URI:  https://Pheriche.com/
- * Version:     1.0.0
+ * Version:     1.0.2
  * Author:      Pheriche
  * Author URI:  https://Pheriche.com/
  * Text Domain: elementor-test-extension
